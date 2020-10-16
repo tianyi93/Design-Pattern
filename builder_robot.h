@@ -5,6 +5,7 @@
 #ifndef DESIGN_PATTERN_ROBOTPLAN_H
 #define DESIGN_PATTERN_ROBOTPLAN_H
 
+#include <iostream>
 #include <string>
 #include <memory>
 
@@ -14,6 +15,7 @@ public:
     virtual void setRobotLeg(std::string const& leg) = 0;
     virtual void getRobotHead() = 0;
     virtual void getRobotLeg() = 0;
+    virtual void getInfo() = 0;
 };
 
 class Robot : public RobotPlan {
@@ -27,10 +29,14 @@ public:
         this->leg = leg;
     }
     void getRobotHead() override{
-        
+        std::cout<<head<<std::endl;
     }
     void getRobotLeg() override{
-
+        std::cout<<leg<<std::endl;
+    }
+    void getInfo() override{
+        getRobotHead();
+        getRobotLeg();
     }
 };
 
@@ -64,7 +70,7 @@ public:
     void buildRobotLeg() override{
         robot.setRobotLeg("newLeg");
     }
-    Robot getRobot() override{
+    Robot getRobot() {
         return robot;
     }
 };
@@ -80,7 +86,7 @@ public:
         this->robotBuilder->buildRobotLeg();
     }
     Robot getRobot(){
-        return robotBuilder->getRobot();
+         return robotBuilder->getRobot();
     }
 };
 #endif //DESIGN_PATTERN_ROBOTPLAN_H

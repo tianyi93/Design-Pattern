@@ -3,4 +3,4 @@ project(design_pattern)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(builder builder.cpp robot.h)
+add_executable(builder_robot builder_robot.cpp builder_robot.h)
