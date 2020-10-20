@@ -5,3 +5,4 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(builder_robot builder_robot.cpp builder_robot.h)
 add_executable(factory_ufo factory_ufo.cpp factory_ufo.h)
+add_executable(abstract_factory abstract_factory.cpp abstract_factory.h)

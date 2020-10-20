@@ -3,7 +3,7 @@
 
 int main() {
     UFOFactory ufoFactory;
-    auto fakeUFO = ufoFactory.makeUFO("F");
+    std::shared_ptr<UFO> fakeUFO = ufoFactory.makeUFO("F");
     fakeUFO->displayUFO();
     auto realUFO = ufoFactory.makeUFO("R");
     realUFO->displayUFO();

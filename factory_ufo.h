@@ -47,8 +47,8 @@ class UFOFactory{
 public:
     std::shared_ptr<UFO> makeUFO(std::string type){
         if(type == "F") {
-              auto fakeUFO = std::shared_ptr<FakeUFO>(new FakeUFO());
-              return fakeUFO;
+            std::shared_ptr<UFO> fakeUFO = std::shared_ptr<FakeUFO>(new FakeUFO());
+            return fakeUFO;
         }
         else if(type == "R"){
             auto realUFO = std::shared_ptr<RealUFO>(new RealUFO());
