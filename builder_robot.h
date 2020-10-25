@@ -40,14 +40,14 @@ public:
     }
 };
 
-class RobotBuilder{
+class RobotSpec{
 public:
     virtual void buildRobotHead() =  0;
     virtual void buildRobotLeg() = 0;
     virtual Robot getRobot() = 0;
 };
 
-class OldRobotBuilder : public RobotBuilder{
+class OldRobotSpec : public RobotSpec{
 public:
     Robot robot;
     void buildRobotHead() {
@@ -61,7 +61,7 @@ public:
     }
 };
 
-class NewRobotBuilder : public RobotBuilder{
+class NewRobotSpec : public RobotSpec{
 public:
     Robot robot;
     void buildRobotHead() override{
@@ -77,8 +77,8 @@ public:
 
 class RobotEngineer{
 public:
-    std::shared_ptr<RobotBuilder> robotBuilder;
-    RobotEngineer(std::shared_ptr<RobotBuilder> robotBuilder){
+    std::shared_ptr<RobotSpec> robotBuilder;
+    RobotEngineer(std::shared_ptr<RobotSpec> robotBuilder){
         this->robotBuilder = robotBuilder;
     }
     void makeRobot(){

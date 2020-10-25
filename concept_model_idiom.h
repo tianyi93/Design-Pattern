@@ -26,11 +26,9 @@ public:
 //actually just an adapter to convert PrintTask and GrabTask to Task
 class Task{
 public:
-    Task(PrintTask task){
-        self = std::unique_ptr<PrintTaskModel>(new PrintTaskModel(std::move(task)));
-    }
-    Task(GrabTask task){
-        self = std::unique_ptr<GrabTaskModel>(new GrabTaskModel(std::move(task)));
+    template<typename T>
+    Task(T task){
+        self = std::unique_ptr<TaskModel<T>>(new TaskModel<T>(std::move(task)));
     }
     void process(){
         this->self->process();
@@ -41,26 +39,16 @@ private:
         virtual void process() = 0;
     };
 
-    class PrintTaskModel: public ConceptTask{
+    template<typename T>
+    class TaskModel: public ConceptTask{
     public:
-        PrintTaskModel(PrintTask const& task){
-            this->task = task;
+        TaskModel(T&& task){
+            this->task = std::move(task);
         }
         void process() override{
             task.process();
         }
-        PrintTask task;
-    };
-
-    class GrabTaskModel: public ConceptTask{
-    public:
-        GrabTaskModel(GrabTask const& task){
-            this->task = task;
-        }
-        void process() override{
-            task.process();
-        }
-        GrabTask task;
+        T task;
     };
 
     std::unique_ptr<ConceptTask> self;
