@@ -4,6 +4,7 @@
     <generated>
       <config projectName="design_pattern" targetName="factory_ufo" />
       <config projectName="design_pattern" targetName="abstract_factory" />
+      <config projectName="design_pattern" targetName="concept_model_idiom" />
       <config projectName="design_pattern" targetName="builder_robot" />
     </generated>
   </component>
@@ -14,13 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3b68ccf-493d-434c-83fa-4144a2196db7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/abstract_factory.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/abstract_factory.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/concept_model_idiom.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/concept_model_idiom.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/factory_ufo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/factory_ufo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/factory_ufo.h" beforeDir="false" afterPath="$PROJECT_DIR$/factory_ufo.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/note.docx" beforeDir="false" afterPath="$PROJECT_DIR$/note.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,9 +48,10 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="CMake Application.abstract_factory">
+  <component name="RunManager" selected="CMake Application.concept_model_idiom">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
@@ -64,6 +63,11 @@
       </method>
     </configuration>
     <configuration name="builder_robot" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="design_pattern" TARGET_NAME="builder_robot" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="design_pattern" RUN_TARGET_NAME="builder_robot">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="concept_model_idiom" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="design_pattern" TARGET_NAME="concept_model_idiom" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="design_pattern" RUN_TARGET_NAME="concept_model_idiom">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -81,6 +85,7 @@
     <list>
       <item itemvalue="CMake Application.abstract_factory" />
       <item itemvalue="CMake Application.builder_robot" />
+      <item itemvalue="CMake Application.concept_model_idiom" />
       <item itemvalue="CMake Application.factory_ufo" />
     </list>
   </component>
@@ -93,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602822071657</updated>
       <workItem from="1602822073845" duration="52000" />
-      <workItem from="1602822130251" duration="8352000" />
+      <workItem from="1602822130251" duration="14925000" />
     </task>
     <servers />
   </component>
@@ -101,25 +106,25 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1603161065889">
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1603592072125">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603161065889" />
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603592072125" />
     <state width="1359" height="223" key="GridCell.Tab.0.bottom/39.23.1401.877@39.23.1401.877" timestamp="1602823883606" />
-    <state width="1398" height="237" key="GridCell.Tab.0.center" timestamp="1603161065886">
+    <state width="1398" height="237" key="GridCell.Tab.0.center" timestamp="1603592072123">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603161065886" />
+    <state width="1398" height="237" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603592072123" />
     <state width="1359" height="223" key="GridCell.Tab.0.center/39.23.1401.877@39.23.1401.877" timestamp="1602823883604" />
-    <state width="1398" height="237" key="GridCell.Tab.0.left" timestamp="1603161065885">
+    <state width="1398" height="237" key="GridCell.Tab.0.left" timestamp="1603592072123">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603161065885" />
+    <state width="1398" height="237" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603592072123" />
     <state width="1359" height="223" key="GridCell.Tab.0.left/39.23.1401.877@39.23.1401.877" timestamp="1602823883603" />
-    <state width="1398" height="237" key="GridCell.Tab.0.right" timestamp="1603161065887">
+    <state width="1398" height="237" key="GridCell.Tab.0.right" timestamp="1603592072124">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603161065887" />
+    <state width="1398" height="237" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603592072124" />
     <state width="1359" height="223" key="GridCell.Tab.0.right/39.23.1401.877@39.23.1401.877" timestamp="1602823883605" />
     <state width="1359" height="276" key="GridCell.Tab.1.bottom" timestamp="1602822903392">
       <screen x="39" y="23" width="1401" height="877" />
