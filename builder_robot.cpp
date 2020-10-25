@@ -2,17 +2,16 @@
 #include "builder_robot.h"
 
 int main() {
-
-    NewRobotSpec newRobotBuilder;
-    RobotEngineer robotEngineer(std::make_shared<NewRobotSpec>(newRobotBuilder));
-    robotEngineer.makeRobot();
-    Robot newRobot = robotEngineer.getRobot();
+    NewRobotSpec newRobotSpec;
+    RobotBuilder robotBuilder(newRobotSpec);
+    robotBuilder.makeRobot();
+    Robot newRobot = robotBuilder.getRobot();
     newRobot.getInfo();
 
-    OldRobotSpec oldRobotBuilder;
-    RobotEngineer robotEngineer1(std::make_shared<OldRobotSpec>(oldRobotBuilder));
-    robotEngineer1.makeRobot();
-    Robot oldRobot =robotEngineer1.getRobot();
+    OldRobotSpec oldRobotSpec;
+    RobotBuilder robotBuilder1(oldRobotSpec);
+    robotBuilder1.makeRobot();
+    Robot oldRobot =robotBuilder1.getRobot();
     oldRobot.getInfo();
     return 0;
 }

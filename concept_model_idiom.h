@@ -28,19 +28,19 @@ class Task{
 public:
     template<typename T>
     Task(T task){
-        self = std::unique_ptr<TaskModel<T>>(new TaskModel<T>(std::move(task)));
+        self = std::unique_ptr<TaskConcept>(new TaskModel<T>(std::move(task)));
     }
     void process(){
         this->self->process();
     }
 private:
-    class ConceptTask{
+    class TaskConcept{
     public:
         virtual void process() = 0;
     };
 
     template<typename T>
-    class TaskModel: public ConceptTask{
+    class TaskModel: public TaskConcept{
     public:
         TaskModel(T&& task){
             this->task = std::move(task);
@@ -51,7 +51,7 @@ private:
         T task;
     };
 
-    std::unique_ptr<ConceptTask> self;
+    std::unique_ptr<TaskConcept> self;
 
 
 };

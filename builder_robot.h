@@ -40,14 +40,7 @@ public:
     }
 };
 
-class RobotSpec{
-public:
-    virtual void buildRobotHead() =  0;
-    virtual void buildRobotLeg() = 0;
-    virtual Robot getRobot() = 0;
-};
-
-class OldRobotSpec : public RobotSpec{
+class OldRobotSpec{
 public:
     Robot robot;
     void buildRobotHead() {
@@ -61,13 +54,13 @@ public:
     }
 };
 
-class NewRobotSpec : public RobotSpec{
+class NewRobotSpec{
 public:
     Robot robot;
-    void buildRobotHead() override{
+    void buildRobotHead(){
         robot.setRobotHead("newHead");
     }
-    void buildRobotLeg() override{
+    void buildRobotLeg(){
         robot.setRobotLeg("newLeg");
     }
     Robot getRobot() {
@@ -75,18 +68,61 @@ public:
     }
 };
 
-class RobotEngineer{
+class RobotSpec{
 public:
-    std::shared_ptr<RobotSpec> robotBuilder;
-    RobotEngineer(std::shared_ptr<RobotSpec> robotBuilder){
-        this->robotBuilder = robotBuilder;
+    template<typename T>
+    RobotSpec(T robotSpec){
+        self = std::make_shared<RobotSpecModel<T>>(robotSpec);
     }
-    void makeRobot(){
-        this->robotBuilder->buildRobotHead();
-        this->robotBuilder->buildRobotLeg();
+    void buildRobotHead(){
+        self->buildRobotHead();
+    }
+    void buildRobotLeg(){
+        self->buildRobotLeg();
     }
     Robot getRobot(){
-         return robotBuilder->getRobot();
+        return self->getRobot();
     }
+private:
+    class RobotSpecConcept {
+    public:
+        virtual void buildRobotHead() = 0;
+
+        virtual void buildRobotLeg() = 0;
+
+        virtual Robot getRobot() = 0;
+    };
+    template<typename T>
+    class RobotSpecModel: public RobotSpecConcept{
+    public:
+        RobotSpecModel(T const& robotSpec){
+            this->robotSpec = robotSpec;
+        }
+        void buildRobotHead(){
+            robotSpec.buildRobotHead();
+        }
+        void buildRobotLeg(){
+            robotSpec.buildRobotLeg();
+        }
+        Robot getRobot(){
+            return robotSpec.getRobot();
+        }
+        T robotSpec;
+    };
+    std::shared_ptr<RobotSpecConcept> self;
+};
+
+class RobotBuilder{
+public:
+    RobotBuilder(RobotSpec const& robotSpec):robotSpec(robotSpec){}
+
+    void makeRobot(){
+        robotSpec.buildRobotHead();
+        robotSpec.buildRobotLeg();
+    }
+    Robot getRobot(){
+         return robotSpec.getRobot();
+    }
+    RobotSpec robotSpec;
 };
 #endif //DESIGN_PATTERN_ROBOTPLAN_H

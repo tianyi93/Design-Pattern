@@ -15,8 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3b68ccf-493d-434c-83fa-4144a2196db7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/builder_robot.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/builder_robot.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/builder_robot.h" beforeDir="false" afterPath="$PROJECT_DIR$/builder_robot.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/concept_model_idiom.h" beforeDir="false" afterPath="$PROJECT_DIR$/concept_model_idiom.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602822071657</updated>
       <workItem from="1602822073845" duration="52000" />
-      <workItem from="1602822130251" duration="15557000" />
+      <workItem from="1602822130251" duration="18698000" />
     </task>
     <servers />
   </component>
@@ -104,41 +106,45 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1603592658421">
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom" timestamp="1603595865302">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603592658421" />
+    <state width="1398" height="237" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603595865302" />
     <state width="1359" height="223" key="GridCell.Tab.0.bottom/39.23.1401.877@39.23.1401.877" timestamp="1602823883606" />
-    <state width="1398" height="237" key="GridCell.Tab.0.center" timestamp="1603592658421">
+    <state width="1398" height="237" key="GridCell.Tab.0.center" timestamp="1603595865301">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603592658421" />
+    <state width="1398" height="237" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603595865301" />
     <state width="1359" height="223" key="GridCell.Tab.0.center/39.23.1401.877@39.23.1401.877" timestamp="1602823883604" />
-    <state width="1398" height="237" key="GridCell.Tab.0.left" timestamp="1603592658420">
+    <state width="1398" height="237" key="GridCell.Tab.0.left" timestamp="1603595865300">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603592658420" />
+    <state width="1398" height="237" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603595865300" />
     <state width="1359" height="223" key="GridCell.Tab.0.left/39.23.1401.877@39.23.1401.877" timestamp="1602823883603" />
-    <state width="1398" height="237" key="GridCell.Tab.0.right" timestamp="1603592658421">
+    <state width="1398" height="237" key="GridCell.Tab.0.right" timestamp="1603595865301">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="237" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603592658421" />
+    <state width="1398" height="237" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603595865301" />
     <state width="1359" height="223" key="GridCell.Tab.0.right/39.23.1401.877@39.23.1401.877" timestamp="1602823883605" />
-    <state width="1359" height="276" key="GridCell.Tab.1.bottom" timestamp="1602822903392">
-      <screen x="39" y="23" width="1401" height="877" />
+    <state width="1398" height="293" key="GridCell.Tab.1.bottom" timestamp="1603595302935">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="1398" height="293" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603595302935" />
     <state width="1359" height="276" key="GridCell.Tab.1.bottom/39.23.1401.877@39.23.1401.877" timestamp="1602822903392" />
-    <state width="1359" height="276" key="GridCell.Tab.1.center" timestamp="1602822903392">
-      <screen x="39" y="23" width="1401" height="877" />
+    <state width="1398" height="293" key="GridCell.Tab.1.center" timestamp="1603595302934">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="1398" height="293" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1603595302934" />
     <state width="1359" height="276" key="GridCell.Tab.1.center/39.23.1401.877@39.23.1401.877" timestamp="1602822903392" />
-    <state width="1359" height="276" key="GridCell.Tab.1.left" timestamp="1602822903392">
-      <screen x="39" y="23" width="1401" height="877" />
+    <state width="1398" height="293" key="GridCell.Tab.1.left" timestamp="1603595302934">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="1398" height="293" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1603595302934" />
     <state width="1359" height="276" key="GridCell.Tab.1.left/39.23.1401.877@39.23.1401.877" timestamp="1602822903392" />
-    <state width="1359" height="276" key="GridCell.Tab.1.right" timestamp="1602822903392">
-      <screen x="39" y="23" width="1401" height="877" />
+    <state width="1398" height="293" key="GridCell.Tab.1.right" timestamp="1603595302934">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="1398" height="293" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1603595302934" />
     <state width="1359" height="276" key="GridCell.Tab.1.right/39.23.1401.877@39.23.1401.877" timestamp="1602822903392" />
     <state x="241" y="100" key="SettingsEditor" timestamp="1602823861234">
       <screen x="39" y="23" width="1401" height="877" />
