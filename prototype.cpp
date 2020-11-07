@@ -3,10 +3,15 @@
 //
 
 #include "prototype.h"
-
+void foo(Prototype prototype){
+    prototype.print();
+    prototype.clone().print();
+}
 int main(){
+
     PrototypeFactory prototypeFactory;
-    prototypeFactory.clonePrototype(Type::PROTOTYPE_1)->print();
-    prototypeFactory.clonePrototype(Type::PROTOTYPE_2)->print();
+    prototypeFactory.cloneSavedPrototype(Type::PROTOTYPE_1).print();
+    prototypeFactory.cloneSavedPrototype(Type::PROTOTYPE_2).print();
     return 0;
+
 }

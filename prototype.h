@@ -7,51 +7,80 @@
 #include <string>
 #include <iostream>
 #include <map>
-#include <memory>
 
 enum Type {
     PROTOTYPE_1 = 0,
     PROTOTYPE_2
 };
 
-struct Prototype{
-    Prototype(std::string const& prototypeName, std::string const& rarelyChangedField):
-            prototypeName_(prototypeName), rarelyChangedField_(rarelyChangedField){};
-    virtual Prototype* clone() = 0;
-    void setPrototypeName(std::string const& name){
-        prototypeName_ = name;
+struct ConcretePrototype1{
+    ConcretePrototype1() = default;
+    ConcretePrototype1(std::string const& prototypeName, std::string const& rarelyChangedField){
+        prototypeName_ = prototypeName;
+        rarelyChangedField_ = rarelyChangedField;
     }
-    virtual void print(){
+    ConcretePrototype1 clone() const{
+        return ConcretePrototype1(*this);
+    }
+    void print() const{
+        std::cout<<"Printing ConcretePrototype1: ";
         std::cout << "prototypeName : " << prototypeName_ << ", rarelyChangedField : " << rarelyChangedField_ << std::endl;
     }
-    virtual ~Prototype(){}
-protected:
     std::string prototypeName_;
     std::string rarelyChangedField_;
 };
 
-struct ConcretePrototype1 : public Prototype{
-    ConcretePrototype1(std::string const& prototypeName, std::string const& rarelyChangedField):
-            Prototype(prototypeName, rarelyChangedField){};
-    Prototype* clone() override{
-        return new ConcretePrototype1(*this);
+struct ConcretePrototype2{
+    ConcretePrototype2() = default;
+    ConcretePrototype2(std::string const& prototypeName, std::string const& rarelyChangedField){
+        prototypeName_ = prototypeName;
+        rarelyChangedField_ = rarelyChangedField;
     }
-    void print() override{
-        std::cout<<"Printing ConcretePrototype1: ";
-        Prototype::print();
+    ConcretePrototype2 clone() const{
+        return ConcretePrototype2(*this);
     }
+    void print() const{
+        std::cout<<"Printing ConcretePrototype2: ";
+        std::cout << "prototypeName : " << prototypeName_ << ", rarelyChangedField : " << rarelyChangedField_ << std::endl;
+    }
+    std::string prototypeName_;
+    std::string rarelyChangedField_;
 };
 
-struct ConcretePrototype2 : public Prototype{
-    ConcretePrototype2(std::string const& prototypeName, std::string const& rarelyChangedField):
-            Prototype(prototypeName, rarelyChangedField){};
-    Prototype* clone() override{
-        return new ConcretePrototype2(*this);
+struct Prototype{
+    Prototype() = default;
+    template<typename T>
+    Prototype(T const& prototype){
+        self = std::unique_ptr<PrototypeConcept const>(new PrototypeModel<T>(prototype));
     }
-    void print() override{
-        std::cout<<"Printing ConcretePrototype2: ";
-        Prototype::print();
+    Prototype clone() const{
+        return self->clone();
     }
+    void print() const{
+        self->print();
+    }
+private:
+    struct PrototypeConcept{
+        virtual Prototype clone() const= 0;
+        virtual void print() const = 0;
+        virtual ~PrototypeConcept(){};
+    };
+
+    template<typename T>
+    struct PrototypeModel : public PrototypeConcept{
+        PrototypeModel(T const& prototype){
+            prototype_ = prototype;
+        }
+        Prototype clone() const override{
+            return prototype_.clone();
+        };
+        void print() const override{
+            prototype_.print();
+        };
+        ~PrototypeModel() override {}
+        T prototype_;
+    };
+    std::unique_ptr<PrototypeConcept const> self;
 };
 
 /**
@@ -62,23 +91,20 @@ struct ConcretePrototype2 : public Prototype{
 
 class PrototypeFactory {
 private:
-    std::map<Type, Prototype *> prototypes_;
+    std::map<Type, Prototype> prototypes_;
 
 public:
     PrototypeFactory() {
-        prototypes_[Type::PROTOTYPE_1] = new ConcretePrototype1("ConcretePrototype1",
+        prototypes_[Type::PROTOTYPE_1] =  ConcretePrototype1("ConcretePrototype1",
                                                                 "this field contains info rarely changes for ConcretePrototype1!");
-        prototypes_[Type::PROTOTYPE_2] = new ConcretePrototype2("ConcretePrototype2 ",
+        prototypes_[Type::PROTOTYPE_2] = ConcretePrototype2("ConcretePrototype2 ",
                                                                 "this field contains info rarely changes for ConcretePrototype2!");
     }
-    ~PrototypeFactory() {
-        delete prototypes_[Type::PROTOTYPE_1];
-        delete prototypes_[Type::PROTOTYPE_2];
-    }
-    Prototype* clonePrototype(Type type){
-        return prototypes_[type]->clone();
+    Prototype cloneSavedPrototype(Type type){
+        return prototypes_[type].clone();
     }
 };
 
 
 #endif //DESIGN_PATTERN_PROTOTYPE_H
+
