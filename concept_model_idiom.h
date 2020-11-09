@@ -28,7 +28,7 @@ class Task{
 public:
     template<typename T>
     Task(T&& task){
-        self = std::unique_ptr<TaskConcept>(new TaskModel<T>(std::move(task)));
+        self = std::unique_ptr<TaskConcept>(new TaskModel<T>(std::forward<T>(task)));
     }
     void process(){
         this->self->process();
@@ -43,9 +43,8 @@ private:
     template<typename T>
     class TaskModel: public TaskConcept{
     public:
-        TaskModel(T&& task){
-            this->task = std::move(task);
-        }
+        TaskModel(T&& task) : task(task)
+        {}
         void process() override{
             task.process();
         }
@@ -59,9 +58,18 @@ private:
 
 class TaskQueue{
 public:
+    template<typename T>
+    void push(T&& task){
+        this->taskQueue.push_back(std::move(task));
+    }
+    //following is ambiguous
+    /*
     void push(Task&& task){
         this->taskQueue.push_back(std::move(task));
     }
+    void push(Task task){
+        this->taskQueue.push_back(std::move(task));
+    }*/
     void run(){
         for(auto& task:taskQueue)
             task.process();

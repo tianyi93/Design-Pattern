@@ -9,5 +9,8 @@ int main(){
     taskQueue.push(PrintTask());
     taskQueue.push(GrabTask());
     taskQueue.run();
+    PrintTask printTask;
+    taskQueue.push(printTask);
+    taskQueue.run();
     return 0;
 }
