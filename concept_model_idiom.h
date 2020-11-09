@@ -27,7 +27,7 @@ public:
 class Task{
 public:
     template<typename T>
-    Task(T task){
+    Task(T&& task){
         self = std::unique_ptr<TaskConcept>(new TaskModel<T>(std::move(task)));
     }
     void process(){
@@ -37,6 +37,7 @@ private:
     class TaskConcept{
     public:
         virtual void process() = 0;
+        virtual ~TaskConcept(){}
     };
 
     template<typename T>
@@ -58,7 +59,7 @@ private:
 
 class TaskQueue{
 public:
-    void push(Task task){
+    void push(Task&& task){
         this->taskQueue.push_back(std::move(task));
     }
     void run(){
