@@ -60,7 +60,7 @@ class TaskQueue{
 public:
     template<typename T>
     void push(T&& task){
-        this->taskQueue.push_back(std::move(task));
+        this->taskQueue.push_back(task);
     }
     //following is ambiguous
     /*
