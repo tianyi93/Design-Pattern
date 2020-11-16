@@ -17,12 +17,29 @@ struct LargeObject{
     LargeObject(){
         std::cout<<"LargeObject default constructor called"<<std::endl;
     }
-    LargeObject(LargeObject const& l){
+    LargeObject(std::string const& content):content_(content){
+        std::cout<<"LargeObject default constructor called"<<std::endl;
+    }
+    LargeObject(LargeObject const& l):content_(l.content_){
         std::cout<<"LargeObject copy constructor called"<<std::endl;
     }
-    void print(){
-
+    LargeObject(LargeObject&& l):content_(l.content_){
+        std::cout<<"LargeObject move constructor called"<<std::endl;
     }
+    LargeObject& operator=(LargeObject const& other){
+        content_ = other.content_;
+        std::cout<<"LargeObject operator= assignment  called"<<std::endl;
+        return *this;
+    }
+    LargeObject& operator=(LargeObject && other){
+        content_ = std::move(other.content_);
+        std::cout<<"LargeObject operator= move assignment called"<<std::endl;
+        return *this;
+    }
+    std::string to_string() const{
+        return content_;
+    }
+private:
     std::string content_;
 };
 
@@ -30,15 +47,13 @@ struct ConcretePrototype1{
     ConcretePrototype1(){
         std::cout<<"default ConcretePrototype1 constructor called"<<std::endl;
     }
-    ConcretePrototype1(std::string const& prototypeName, std::string const& rarelyChangedField){
+    ConcretePrototype1(std::string const& prototypeName, LargeObject const& rarelyChangedField):
+    prototypeName_(prototypeName), rarelyChangedField_(rarelyChangedField){
         std::cout<<"ConcretePrototype1 constructor called"<<std::endl;
-        prototypeName_ = prototypeName;
-        rarelyChangedField_ = rarelyChangedField;
     }
-    ConcretePrototype1(ConcretePrototype1 const& concretePrototype1){
+    ConcretePrototype1(ConcretePrototype1 const& concretePrototype1):
+    prototypeName_(concretePrototype1.prototypeName_), rarelyChangedField_(concretePrototype1.rarelyChangedField_){
         std::cout<<"ConcretePrototype1 copy constructor called"<<std::endl;
-        prototypeName_ = concretePrototype1.prototypeName_;
-        rarelyChangedField_ = concretePrototype1.rarelyChangedField_;
     }
     ConcretePrototype1& operator=(ConcretePrototype1 const& other){
         std::cout<<"ConcretePrototype2 operator = copy constructor called"<<std::endl;
@@ -51,10 +66,10 @@ struct ConcretePrototype1{
     }
     void print() const{
         std::cout<<"Printing ConcretePrototype1: ";
-        std::cout << "prototypeName : " << prototypeName_ << ", rarelyChangedField : " << rarelyChangedField_ << std::endl;
+        std::cout << "prototypeName : " << prototypeName_ << ", rarelyChangedField : " << rarelyChangedField_.to_string() << std::endl;
     }
     std::string prototypeName_;
-    std::string rarelyChangedField_;
+    LargeObject rarelyChangedField_;
 };
 
 struct ConcretePrototype2{
@@ -92,8 +107,9 @@ struct Prototype{
     Prototype(){
         std::cout<<"Prototype default constructor is called"<<std::endl;
     }
-    Prototype(Prototype const& prototype){
-        std::cout<<"Prototype copy constructor is called"<<std::endl;
+    Prototype(Prototype&& prototype){
+        std::cout<<"Prototype move constructor is called"<<std::endl;
+        self = std::move(prototype.self);
     }
     template<typename T>
     Prototype(T const& prototype){
@@ -106,7 +122,8 @@ struct Prototype{
         return *this;
     }
     Prototype clone() const{
-        return self->clone();
+        Prototype p(self->clone());
+        return std::move(p);
     }
     void print() const{
         self->print();
@@ -127,7 +144,7 @@ private:
             std::cout<<"PrototypeModel constructor is called"<<std::endl;
         }
         Prototype clone() const override{
-            return std::move(prototype_.clone());
+            return prototype_.clone();
         };
         void print() const override{
             prototype_.print();
@@ -150,8 +167,9 @@ private:
 
 public:
     PrototypeFactory() {
+        LargeObject l1("this field contains info rarely changes for ConcretePrototype1!");
         prototypes_[Type::PROTOTYPE_1] = ConcretePrototype1("ConcretePrototype1",
-                                                                "this field contains info rarely changes for ConcretePrototype1!");
+                                                                l1);
         prototypes_[Type::PROTOTYPE_2] = ConcretePrototype2("ConcretePrototype2 ",
                                                                 "this field contains info rarely changes for ConcretePrototype2!");
     }
