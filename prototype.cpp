@@ -10,7 +10,8 @@ void foo(Prototype prototype){
 int main(){
 
     PrototypeFactory prototypeFactory;
-    prototypeFactory.cloneSavedPrototype(Type::PROTOTYPE_1).print();
+    auto p1cloned = prototypeFactory.cloneSavedPrototype(Type::PROTOTYPE_1);
+    p1cloned.print();
     prototypeFactory.cloneSavedPrototype(Type::PROTOTYPE_2).print();
     return 0;
 
