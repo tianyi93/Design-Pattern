@@ -18,7 +18,7 @@ struct LargeObject{
         std::cout<<"LargeObject default constructor called"<<std::endl;
     }
     LargeObject(std::string const& content):content_(content){
-        std::cout<<"LargeObject default constructor called"<<std::endl;
+        std::cout<<"LargeObject string constructor called"<<std::endl;
     }
     LargeObject(LargeObject const& l):content_(l.content_){
         std::cout<<"LargeObject copy constructor called"<<std::endl;
@@ -54,6 +54,10 @@ struct ConcretePrototype1{
     ConcretePrototype1(ConcretePrototype1 const& concretePrototype1):
     prototypeName_(concretePrototype1.prototypeName_), rarelyChangedField_(concretePrototype1.rarelyChangedField_){
         std::cout<<"ConcretePrototype1 copy constructor called"<<std::endl;
+    }
+    ConcretePrototype1(ConcretePrototype1&& concretePrototype1):
+            prototypeName_(concretePrototype1.prototypeName_), rarelyChangedField_(std::move(concretePrototype1.rarelyChangedField_)){
+        std::cout<<"ConcretePrototype1 move constructor called"<<std::endl;
     }
     ConcretePrototype1& operator=(ConcretePrototype1 const& other){
         std::cout<<"ConcretePrototype2 operator = copy constructor called"<<std::endl;
@@ -112,9 +116,9 @@ struct Prototype{
         self = std::move(prototype.self);
     }
     template<typename T>
-    Prototype(T const& prototype){
+    Prototype(T&& prototype){
         std::cout<<"Prototype template constructor is called"<<std::endl;
-        self = std::unique_ptr<PrototypeConcept const>(new PrototypeModel<T>(prototype));
+        self = std::unique_ptr<PrototypeConcept const>(new PrototypeModel<T>(std::forward<T>(prototype)));
     }
     Prototype& operator=(Prototype&& rhs){
         std::cout<<"Prototype operator = move assignment operator is called"<<std::endl;
@@ -140,7 +144,7 @@ private:
         PrototypeModel(){
             std::cout<<"PrototypeModel default constructor is called"<<std::endl;
         }
-        PrototypeModel(T const& prototype):prototype_(prototype){
+        PrototypeModel(T&& prototype) : prototype_(std::forward<T>(prototype)){
             std::cout<<"PrototypeModel constructor is called"<<std::endl;
         }
         Prototype clone() const override{
@@ -150,6 +154,7 @@ private:
             prototype_.print();
         };
         ~PrototypeModel() override {}
+
         T prototype_;
     };
     std::unique_ptr<PrototypeConcept const> self;

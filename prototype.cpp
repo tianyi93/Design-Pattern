@@ -10,6 +10,7 @@ void foo(Prototype prototype){
 int main(){
 
     PrototypeFactory prototypeFactory;
+    std::cout<<"------Prototype Factory built, start cloning------"<<std::endl;
     auto p1cloned = prototypeFactory.cloneSavedPrototype(Type::PROTOTYPE_1);
     p1cloned.print();
     prototypeFactory.cloneSavedPrototype(Type::PROTOTYPE_2).print();
