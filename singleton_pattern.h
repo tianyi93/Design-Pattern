@@ -28,9 +28,12 @@ public:
  */
 std::shared_ptr<Singleton> Singleton::singleton_= nullptr;
 std::shared_ptr<Singleton> Singleton::getInstance(std::string value){
-    std::lock_guard<std::mutex> lock(mutex_);
-    if(singleton_ == nullptr)
-        singleton_ = std::shared_ptr<Singleton>(new Singleton(value));
+    if(singleton_ == nullptr) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        if (singleton_ == nullptr)
+            singleton_ = std::shared_ptr<Singleton>(new Singleton(value));
+        return singleton_;
+    }
     return singleton_;
 }
 std::mutex Singleton::mutex_;
