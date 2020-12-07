@@ -10,4 +10,5 @@ add_executable(concept_model_idiom concept_model_idiom.cpp concept_model_idiom.h
 add_executable(prototype prototype.cpp prototype.h)
 add_executable(singleton_pattern singleton_pattern.cpp singleton_pattern.h)
 add_executable(adapter adapter.cpp adapter.h)
+add_executable(bridge bridge.cpp bridge.h)
 add_executable(try try.cpp)
