@@ -118,7 +118,7 @@ struct Prototype{
     template<typename T>
     Prototype(T&& prototype){
         std::cout<<"Prototype template constructor is called"<<std::endl;
-        self = std::unique_ptr<PrototypeConcept const>(new PrototypeModel<T>(std::forward<T>(prototype)));
+        self = std::make_unique<PrototypeModel<T> const>(std::forward<T>(prototype));
     }
     Prototype& operator=(Prototype&& rhs){
         std::cout<<"Prototype operator = move assignment operator is called"<<std::endl;
