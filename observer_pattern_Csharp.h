@@ -26,6 +26,7 @@ struct UnSubscriber{
 
 template<typename T>
 struct IObservable{
+    //maybe make use of a unsubscribe method instead of returning a unsubscriber.
     virtual std::shared_ptr<UnSubscriber> subscribe(std::shared_ptr<IObserver<T>> observer) = 0;
 };
 
@@ -101,6 +102,7 @@ struct TemperatureMonitor : public IObservable<Temperature>
 private:
     std::vector<std::shared_ptr<IObserver<Temperature>>> observers;
     Temperature temperature;
+    //disposable in csharp
     struct UnsubscriberImpl : UnSubscriber{
         UnsubscriberImpl(std::vector<std::shared_ptr<IObserver<Temperature>>>& observers,
                          std::shared_ptr<IObserver<Temperature>> observer){

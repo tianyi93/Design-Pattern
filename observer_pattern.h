@@ -9,7 +9,7 @@
 #include <iostream>
 
 struct IObserver{
-    virtual void update() = 0;
+    virtual void getUpdates() = 0;
     virtual ~IObserver(){};
 };
 
@@ -19,12 +19,40 @@ struct IObserverable{
     virtual void notify() = 0;
 };
 
-struct WeatherStation : public IObserverable{
-    void add(std::shared_ptr<IObserver> observer){
+struct AlertStation : public IObserverable{
+    void add(std::shared_ptr<IObserver> observer) override{
+        observerList.push_back(observer);
+    }
+    void remove(std::shared_ptr<IObserver> observer) override{
+        for(int i=0; i<observerList.size(); i++) {
+            if(observerList[i] == observer)
+                observerList.erase(observerList.begin() + i);
+        }
+    }
+    void setAlert(bool alertStatus){
+        Alert = alertStatus;
+        notify();
+    }
+
+    bool Alert;
+private:
+    void notify() override{
+        for(auto observer : observerList)
+            observer->getUpdates();
+    }
+    std::vector<std::shared_ptr<IObserver>> observerList;
+};
+
+struct WeatherStation : public IObserverable, public IObserver{
+    WeatherStation() = default;
+    WeatherStation(std::shared_ptr<AlertStation> alertStation){
+        this->alertStation = alertStation;
+    }
+    void add(std::shared_ptr<IObserver> observer) override{
         observerList.push_back(observer);
     }
 
-    void remove(std::shared_ptr<IObserver> observer){
+    void remove(std::shared_ptr<IObserver> observer) override{
         for(int i=0; i<observerList.size(); i++) {
             if(observerList[i] == observer)
                 observerList.erase(observerList.begin() + i);
@@ -40,30 +68,39 @@ struct WeatherStation : public IObserverable{
     double Temperature;
     int TimeSerial;
 
+    void getUpdates() override{
+        this->Alert = alertStation->Alert;
+        notify();
+    }
+    bool Alert;
 private:
-    void notify(){
+    void notify() override{
         for(auto observer : observerList)
-            observer->update();
+            observer->getUpdates();
     }
     std::vector<std::shared_ptr<IObserver>> observerList;
+    std::shared_ptr<AlertStation> alertStation;
 };
 
 struct MonitorDisplay : public IObserver{
     MonitorDisplay(std::shared_ptr<WeatherStation> weatherStation){
         this->weatherStation = weatherStation;
     }
-    void update(){
+    void getUpdates() override{
         this->displayTemperature = weatherStation->Temperature;
         this->timeSerial = weatherStation->TimeSerial;
+        this->alert = weatherStation->Alert;
         display();
     }
 
 private:
     void display(){
         std::cout<<"Monitor display Temperature : "<< displayTemperature << "; TimeSerial : " << timeSerial << std::endl;
+        std::cout<<"Alert status: "<< alert<<std::endl;
     }
     double displayTemperature;
     double timeSerial;
+    bool alert;
     std::shared_ptr<WeatherStation> weatherStation;
 };
 
@@ -71,7 +108,7 @@ struct PhoneDisplay : public IObserver{
     PhoneDisplay(std::shared_ptr<WeatherStation> weatherStation){
         this->weatherStation = weatherStation;
     }
-    void update(){
+    void getUpdates() override{
         this->displayTemperature = weatherStation->Temperature;
         display();
     }
