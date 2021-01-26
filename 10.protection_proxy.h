@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 12/24/20.
 //
 
-#ifndef DESIGN_PATTERN_PROTECTION_PROXY_H
-#define DESIGN_PATTERN_PROTECTION_PROXY_H
+#ifndef DESIGN_PATTERN_10_PROTECTION_PROXY_H
+#define DESIGN_PATTERN_10_PROTECTION_PROXY_H
 #include <string>
 #include <iostream>
 #include <memory>
@@ -107,4 +107,4 @@ PersonBeanOwnerProxy getOwnerProxy(std::shared_ptr<PersonBeanImpl> personBean){
 PersonBeanNonOwnerProxy getNonOwnerProxy(std::shared_ptr<PersonBeanImpl> personBean){
     return PersonBeanNonOwnerProxy(personBean);
 }
-#endif //DESIGN_PATTERN_PROTECTION_PROXY_H
+#endif //DESIGN_PATTERN_10_PROTECTION_PROXY_H

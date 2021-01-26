@@ -2,7 +2,7 @@
 // Created by Tianyi Zhang on 1/3/21.
 //
 
-#include "decorator_pattern.h"
+#include "12.decorator_pattern.h"
 #include <iostream>
 int main(){
     std::shared_ptr<Beverage> houseBlend = std::make_shared<HouseBlend>();

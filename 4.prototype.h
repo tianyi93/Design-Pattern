@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 11/4/20.
 //
 
-#ifndef DESIGN_PATTERN_PROTOTYPE_H
-#define DESIGN_PATTERN_PROTOTYPE_H
+#ifndef DESIGN_PATTERN_4_PROTOTYPE_H
+#define DESIGN_PATTERN_4_PROTOTYPE_H
 #include <string>
 #include <iostream>
 #include <map>
@@ -184,5 +184,5 @@ public:
 };
 
 
-#endif //DESIGN_PATTERN_PROTOTYPE_H
+#endif //DESIGN_PATTERN_4_PROTOTYPE_H
 

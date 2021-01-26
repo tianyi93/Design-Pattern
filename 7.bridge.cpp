@@ -1,7 +1,7 @@
 //
 // Created by Tianyi Zhang on 12/6/20.
 //
-#include "bridge.h"
+#include "7.bridge.h"
 int main(){
     Artist artist;
     std::shared_ptr<ArtistResource> artistResource = std::make_shared<ArtistResource>(artist);

@@ -1,5 +1,5 @@
-#ifndef DESIGN_PATTERN_FACTORY_UFO_H
-#define DESIGN_PATTERN_FACTORY_UFO_H
+#ifndef DESIGN_PATTERN_1_FACTORY_UFO_H
+#define DESIGN_PATTERN_1_FACTORY_UFO_H
 #include <string>
 #include <iostream>
 #include <memory>
@@ -57,4 +57,4 @@ public:
     }
 };
 
-#endif //DESIGN_PATTERN_FACTORY_UFO_H
+#endif //DESIGN_PATTERN_1_FACTORY_UFO_H

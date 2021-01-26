@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 10/24/20.
 //
 
-#ifndef DESIGN_PATTERN_CONCEPT_MODEL_IDIOM_H
-#define DESIGN_PATTERN_CONCEPT_MODEL_IDIOM_H
+#ifndef DESIGN_PATTERN_3_CONCEPT_MODEL_IDIOM_H
+#define DESIGN_PATTERN_3_CONCEPT_MODEL_IDIOM_H
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -78,4 +78,4 @@ public:
 private:
     std::vector<Task> taskQueue;
 };
-#endif //DESIGN_PATTERN_CONCEPT_MODEL_IDIOM_H
+#endif //DESIGN_PATTERN_3_CONCEPT_MODEL_IDIOM_H

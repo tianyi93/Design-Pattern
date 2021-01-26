@@ -2,7 +2,7 @@
 // Created by Tianyi Zhang on 12/24/20.
 //
 
-#include "protection_proxy.h"
+#include "10.protection_proxy.h"
 int main(){
     std::shared_ptr<PersonBeanImpl> personBeanImpl = std::make_shared<PersonBeanImpl>();
     auto ownerProxy = getOwnerProxy(personBeanImpl);

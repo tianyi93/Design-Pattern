@@ -2,7 +2,7 @@
 // Created by Tianyi Zhang on 11/4/20.
 //
 
-#include "prototype.h"
+#include "4.prototype.h"
 void foo(Prototype prototype){
     prototype.print();
     prototype.clone().print();

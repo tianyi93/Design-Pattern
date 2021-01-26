@@ -1,7 +1,7 @@
 //
 // Created by Tianyi Zhang on 11/16/20.
 //
-#include "adapter.h"
+#include "6.adapter.h"
 
 int main(){
     Adapter adapter;

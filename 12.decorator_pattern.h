@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 1/3/21.
 //
 
-#ifndef DESIGN_PATTERN_DECORATOR_PATTERN_H
-#define DESIGN_PATTERN_DECORATOR_PATTERN_H
+#ifndef DESIGN_PATTERN_12_DECORATOR_PATTERN_H
+#define DESIGN_PATTERN_12_DECORATOR_PATTERN_H
 #include <string>
 #include <memory>
 
@@ -67,4 +67,4 @@ struct  Milk : public CondimentDecorator{
         return 0.6+beverage->cost();
     }
 };
-#endif //DESIGN_PATTERN_DECORATOR_PATTERN_H
+#endif //DESIGN_PATTERN_12_DECORATOR_PATTERN_H

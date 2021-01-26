@@ -2,7 +2,7 @@
 // Created by Tianyi Zhang on 12/19/20.
 //
 
-#include "observer_pattern.h"
+#include "9.observer_pattern.h"
 int main(){
     std::shared_ptr<AlertStation> alertStation = std::make_shared<AlertStation>();
     std::shared_ptr<WeatherStation> weatherStation = std::make_shared<WeatherStation>(alertStation);

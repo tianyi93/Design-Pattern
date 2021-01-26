@@ -2,7 +2,7 @@
 // Created by Tianyi Zhang on 1/2/21.
 //
 
-#include "strategy_pattern.h"
+#include "11.strategy_pattern.h"
 int main(){
     auto quack = std::make_shared<Quack>();
     auto muteQuack = std::make_shared<MuteQuack>();

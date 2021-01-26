@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 12/6/20.
 //
 
-#ifndef DESIGN_PATTERN_BRIDGE_H
-#define DESIGN_PATTERN_BRIDGE_H
+#ifndef DESIGN_PATTERN_7_BRIDGE_H
+#define DESIGN_PATTERN_7_BRIDGE_H
 #include <string>
 #include <memory>
 #include <iostream>
@@ -65,4 +65,4 @@ struct FullView : public IView{
     std::shared_ptr<IResource> resource;
 };
 
-#endif //DESIGN_PATTERN_BRIDGE_H
+#endif //DESIGN_PATTERN_7_BRIDGE_H

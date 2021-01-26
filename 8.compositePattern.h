@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 12/12/20.
 //
 
-#ifndef DESIGN_PATTERN_COMPOSITEPATTERN_H
-#define DESIGN_PATTERN_COMPOSITEPATTERN_H
+#ifndef DESIGN_PATTERN_8_COMPOSITEPATTERN_H
+#define DESIGN_PATTERN_8_COMPOSITEPATTERN_H
 #include <string>
 #include <vector>
 #include <memory>
@@ -42,4 +42,4 @@ private:
     std::string name;
     std::vector<std::shared_ptr<ToDoList>> todos;
 };
-#endif //DESIGN_PATTERN_COMPOSITEPATTERN_H
+#endif //DESIGN_PATTERN_8_COMPOSITEPATTERN_H

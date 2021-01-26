@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 11/16/20.
 //
 
-#ifndef DESIGN_PATTERN_ADAPTER_H
-#define DESIGN_PATTERN_ADAPTER_H
+#ifndef DESIGN_PATTERN_6_ADAPTER_H
+#define DESIGN_PATTERN_6_ADAPTER_H
 #include <iostream>
 
 struct IClient{
@@ -27,4 +27,4 @@ private:
 };
 
 
-#endif //DESIGN_PATTERN_ADAPTER_H
+#endif //DESIGN_PATTERN_6_ADAPTER_H

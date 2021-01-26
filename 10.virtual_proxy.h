@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 12/22/20.
 //
 
-#ifndef DESIGN_PATTERN_VIRTUAL_PROXY_H
-#define DESIGN_PATTERN_VIRTUAL_PROXY_H
+#ifndef DESIGN_PATTERN_10_VIRTUAL_PROXY_H
+#define DESIGN_PATTERN_10_VIRTUAL_PROXY_H
 #include <string>
 #include <iostream>
 #include <chrono>
@@ -79,4 +79,4 @@ private:
 };
 
 
-#endif //DESIGN_PATTERN_VIRTUAL_PROXY_H
+#endif //DESIGN_PATTERN_10_VIRTUAL_PROXY_H

@@ -2,7 +2,7 @@
 // Created by Tianyi Zhang on 12/12/20.
 //
 
-#include "compositePattern.h"
+#include "8.compositePattern.h"
 #include <iostream>
 int main(){
     std::shared_ptr<ToDoList> todo1 = std::make_shared<ToDo>("todo1");

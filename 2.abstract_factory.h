@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 10/18/20.
 //
 
-#ifndef DESIGN_PATTERN_ABSTRACT_FACTORY_H
-#define DESIGN_PATTERN_ABSTRACT_FACTORY_H
+#ifndef DESIGN_PATTERN_2_ABSTRACT_FACTORY_H
+#define DESIGN_PATTERN_2_ABSTRACT_FACTORY_H
 #include <string>
 #include <memory>
 class Button{
@@ -120,4 +120,4 @@ public:
         return window;
     }
 };
-#endif //DESIGN_PATTERN_ABSTRACT_FACTORY_H
+#endif //DESIGN_PATTERN_2_ABSTRACT_FACTORY_H

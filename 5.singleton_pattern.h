@@ -3,8 +3,8 @@
 //
 //referencer : https://refactoring.guru/design-patterns/singleton/cpp/example#example-1
 
-#ifndef DESIGN_PATTERN_SINGLETON_PATTERN_H
-#define DESIGN_PATTERN_SINGLETON_PATTERN_H
+#ifndef DESIGN_PATTERN_5_SINGLETON_PATTERN_H
+#define DESIGN_PATTERN_5_SINGLETON_PATTERN_H
 #include <string>
 #include <memory>
 #include <iostream>
@@ -38,4 +38,4 @@ std::shared_ptr<Singleton> Singleton::getInstance(std::string value){
 }
 std::mutex Singleton::mutex_;
 
-#endif //DESIGN_PATTERN_SINGLETON_PATTERN_H
+#endif //DESIGN_PATTERN_5_SINGLETON_PATTERN_H

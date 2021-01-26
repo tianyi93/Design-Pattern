@@ -2,7 +2,7 @@
 // Created by Tianyi Zhang on 11/9/20.
 //
 
-#include "singleton_pattern.h"
+#include "5.singleton_pattern.h"
 #include <thread>
 
 void thread1(){

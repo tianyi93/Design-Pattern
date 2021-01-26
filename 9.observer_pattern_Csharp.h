@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 1/4/21.
 //
 
-#ifndef DESIGN_PATTERN_OBSERVER_PATTERN_CSHARP_H
-#define DESIGN_PATTERN_OBSERVER_PATTERN_CSHARP_H
+#ifndef DESIGN_PATTERN_9_OBSERVER_PATTERN_CSHARP_H
+#define DESIGN_PATTERN_9_OBSERVER_PATTERN_CSHARP_H
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -138,4 +138,4 @@ struct TemperatureReporter : public IObserver<Temperature>{
 };
 
 
-#endif //DESIGN_PATTERN_OBSERVER_PATTERN_CSHARP_H
+#endif //DESIGN_PATTERN_9_OBSERVER_PATTERN_CSHARP_H

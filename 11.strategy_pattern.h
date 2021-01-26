@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 1/2/21.
 //
 
-#ifndef DESIGN_PATTERN_STRATEGY_PATTERN_H
-#define DESIGN_PATTERN_STRATEGY_PATTERN_H
+#ifndef DESIGN_PATTERN_11_STRATEGY_PATTERN_H
+#define DESIGN_PATTERN_11_STRATEGY_PATTERN_H
 #include <string>
 #include <iostream>
 #include <memory>
@@ -80,4 +80,4 @@ struct FakeDuck : Duck{
         std::cout<<"This is a fake duck"<<std::endl;
     }
 };
-#endif //DESIGN_PATTERN_STRATEGY_PATTERN_H
+#endif //DESIGN_PATTERN_11_STRATEGY_PATTERN_H

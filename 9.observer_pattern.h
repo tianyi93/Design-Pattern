@@ -2,8 +2,8 @@
 // Created by Tianyi Zhang on 12/19/20.
 //
 
-#ifndef DESIGN_PATTERN_OBSERVER_PATTERN_H
-#define DESIGN_PATTERN_OBSERVER_PATTERN_H
+#ifndef DESIGN_PATTERN_9_OBSERVER_PATTERN_H
+#define DESIGN_PATTERN_9_OBSERVER_PATTERN_H
 #include <memory>
 #include <vector>
 #include <iostream>
@@ -120,4 +120,4 @@ private:
     double displayTemperature;
     std::shared_ptr<WeatherStation> weatherStation;
 };
-#endif //DESIGN_PATTERN_OBSERVER_PATTERN_H
+#endif //DESIGN_PATTERN_9_OBSERVER_PATTERN_H
