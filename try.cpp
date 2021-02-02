@@ -1,29 +1,36 @@
 #include <iostream>
 #include <memory>
+#include <functional>
 //
 // Created by Tianyi Zhang on 10/28/20.
 //
-struct ItemType{
-    ItemType(int id){}
-    ItemType(ItemType const& i) = delete;
-    ItemType(ItemType&& i) = default;
-    ~ItemType(){std::cout<<"destructed"<<std::endl;}
-    std::string Id = "fdsafdsfjjklkjlkjljlk";
-};
-template <typename T>
-void foo(T&& a, std::string b = ""){
-    std::cout<<a.Id<<std::endl;
+template<typename ...T>
+using FunctionCall1 = void(T const&...);
+
+typedef void(*FunctionCall)(int const&);
+void foo(int const& a){
+    std::cout<<&a<<std::endl;
 }
-void foo1(ItemType && item){
-    ItemType b = std::move(item);
+
+void foo2(std::function<void(int const&)> func){
+    std::cout<<&func<<std::endl;
+}
+
+void foo3(FunctionCall1<int> const& func){
+    std::cout<<func<<std::endl;
 }
 int main(){
-    ItemType item0(0);
-    //std::cout<<item0.Id<<std::endl;
-    auto uniquePtr = std::make_unique<ItemType>(std::move(item0));
-    //foo(std::move(item0));
-    //foo1(std::move(item0));
-    std::cout<<uniquePtr->Id<<"aaa"<<std::endl;
-    std::cout<<item0.Id<<std::endl;
+    std::cout<<foo<<std::endl;
+    foo2(&foo);
+
+    foo3(foo);
+
+    std::string a = "abcd";
+    auto f = [&](){
+        std::cout<<a<<std::endl;
+    };
+    a= "fdasf";
+    f();
+
     return 0;
 }
