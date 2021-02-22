@@ -1,36 +1,59 @@
 #include <iostream>
 #include <memory>
 #include <functional>
+#include <vector>
+#include <algorithm>
 //
 // Created by Tianyi Zhang on 10/28/20.
 //
-template<typename ...T>
-using FunctionCall1 = void(T const&...);
+using namespace std;
+class Solution {
+public:
+    vector<vector<int>> process(vector<int>& nums){
+        vector<vector<int>> ret;
+        for(auto i : nums){
+            vector<int> curNum;
+            while(true){
+                curNum.insert(curNum.begin(), i%10);
+                i/=10;
+                if(i == 0)
+                    break;
+            }
+            ret.push_back(curNum);
+        }
+        return ret;
+    }
 
-typedef void(*FunctionCall)(int const&);
-void foo(int const& a){
-    std::cout<<&a<<std::endl;
-}
 
-void foo2(std::function<void(int const&)> func){
-    std::cout<<&func<<std::endl;
-}
 
-void foo3(FunctionCall1<int> const& func){
-    std::cout<<func<<std::endl;
-}
+    string largestNumber(vector<int>& nums) {
+        vector<vector<int>> p = vector<vector<int>>(8,vector<int>(1,0));
+        sort(p.begin(), p.end(), [](vector<int> const& lhs, vector<int> const& rhs){
+            return true;
+        });
+        string res;
+        return res;
+    }
+};
+
 int main(){
-    std::cout<<foo<<std::endl;
-    foo2(&foo);
+    std::vector<int> a{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    std::vector<int> b{0,0,0,0,0,0,0};
 
-    foo3(foo);
+    /*vector<vector<int>> p = vector<vector<int>>(8,vector<int>(1,0));
+    sort(p.begin(), p.end(), [](vector<int> const& lhs, vector<int> const& rhs){
+        return true;
+    });*/
 
-    std::string a = "abcd";
-    auto f = [&](){
-        std::cout<<a<<std::endl;
-    };
-    a= "fdasf";
-    f();
+    vector<int> pi = vector<int>(10000,0);
+    sort(pi.begin(), pi.end(), [](auto const& lhs, auto const& rhs){
+        if(lhs < rhs)
+            return true;
+        else
+            return false;
+    });
 
+    Solution solution;
+    //solution.largestNumber(b);
     return 0;
 }

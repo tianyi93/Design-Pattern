@@ -20,4 +20,5 @@ add_executable(decorator_pattern 12.decorator_pattern.cpp 12.decorator_pattern.h
 add_executable(observer_pattern_Csharp 9.observer_pattern_Csharp.cpp 9.observer_pattern.h)
 add_executable(decorator_pattern_1 12.decorator_pattern_1.cpp 12.decorator_pattern_1.h)
 add_executable(command_pattern 13.command_pattern.cpp 13.command_pattern.h)
+add_executable(template_method 14.template_method.cpp 14.template_method.h)
 add_executable(try try.cpp)
