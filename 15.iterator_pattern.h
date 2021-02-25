@@ -75,25 +75,28 @@ private:
 struct LunchMenuIterator: public MenuItemIterator{
     LunchMenuIterator( std::unordered_map<MenuItem, bool> const& menuItems) : menuItems_(menuItems){
         curIterator_ = menuItems_.begin();
+        iterateToNextTrueItem();
     }
     bool hasNext() override{
+        iterateToNextTrueItem();
         if(curIterator_ == menuItems_.end())
             return false;
         else
             return true;
     }
     void next() override{
-
         curIterator_ = ++curIterator_;
-        while(curIterator_!=menuItems_.end() && curIterator_->second == false)
-            curIterator_ = ++curIterator_;
+        iterateToNextTrueItem();
     }
     MenuItem getMenuItem() override{
-        while(curIterator_!=menuItems_.end() && curIterator_->second == false)
-            curIterator_ = ++curIterator_;
+        iterateToNextTrueItem();
         return curIterator_->first;
     }
 private:
+    void iterateToNextTrueItem(){
+        while(curIterator_!=menuItems_.end() && curIterator_->second == false)
+            curIterator_ = ++curIterator_;
+    }
     std::unordered_map<MenuItem, bool>::iterator curIterator_;
     std::unordered_map<MenuItem, bool> menuItems_;
 };
