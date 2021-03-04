@@ -88,13 +88,15 @@ private:
     Iterator end_;
 };
 
-//do not care about true of false in map, demo on how to make map and vector work on same Iterator pattern
 struct LunchMenu{
     struct Iterator{
         Iterator() = default;
-        Iterator(std::unordered_map<MenuItem,bool>::iterator it):curIterator_(it){};
+        Iterator(std::unordered_map<MenuItem,bool>::iterator it,
+                 std::unordered_map<MenuItem,bool>::iterator end):curIterator_(it), end_(end){};
         Iterator& operator++(){
-            curIterator_++;
+            ++curIterator_;
+            while(curIterator_ != end_ && curIterator_->second == false)
+                ++curIterator_;
             return *this;
         }
         bool operator==(Iterator const& rhs){
@@ -108,14 +110,26 @@ struct LunchMenu{
         }
     private:
         std::unordered_map<MenuItem,bool>::iterator curIterator_;
+        std::unordered_map<MenuItem,bool>::iterator end_;
     };
 
     LunchMenu(){
-        addItem("rice",2);
-        addItem("bao", 1);
-        addItem("lamb", 5);
-        begin_ = Iterator(menuItems_.begin());
-        end_ = Iterator(menuItems_.end());
+        addItem("rice",2, true);
+        addItem("bao", 1, false);
+        addItem("lamb", 5, true);
+        addItem("beef", 5, false);
+        bool foundBegin = false;
+        for(auto it = menuItems_.begin(); it!= menuItems_.end(); it++) {
+            if(it->second == true) {
+                if(!foundBegin) {
+                    begin_ = Iterator(it, menuItems_.end());
+                    foundBegin = true;
+                }
+                end_ = Iterator(it, menuItems_.end());
+            }
+        }
+        if(foundBegin)
+            ++end_;
     }
     Iterator begin(){
         return begin_;
@@ -124,8 +138,8 @@ struct LunchMenu{
         return end_;
     }
 private:
-    void addItem(std::string const& name, double price){
-        menuItems_[MenuItem(name, price)] = true;
+    void addItem(std::string const& name, double price, bool display){
+        menuItems_[MenuItem(name, price)] = display;
     }
     std::unordered_map<MenuItem,bool> menuItems_;
     Iterator begin_;
@@ -141,7 +155,7 @@ struct Waitress{
     }
     void printMenu(){
         std::cout<<"Print breakfast Menu"<<std::endl;
-        printMenu(breakfastMenu_);
+        //printMenu(breakfastMenu_);
         std::cout<<"Print lunch Menu"<<std::endl;
         printMenu(lunchMenu_);
     }
