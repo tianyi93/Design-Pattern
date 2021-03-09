@@ -22,7 +22,7 @@
 
 # Compiled Static libraries
 *.lai
-*.la
+*.lag
 *.a
 *.lib
 
@@ -30,3 +30,5 @@
 *.exe
 *.out
 *.app
+
+.idea/
