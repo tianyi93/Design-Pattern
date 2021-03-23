@@ -49,43 +49,48 @@ std::size_t std::hash<MenuItem>::operator()(const MenuItem& k) const
 struct BreakfastMenu{
     struct Iterator{
         Iterator() = default;
-        Iterator(std::vector<MenuItem>::iterator it):curIterator_(it){};
+        Iterator(std::vector<MenuItem>* menuItems):menuItems_(menuItems), pos_(0){};
         Iterator& operator++(){
-            curIterator_++;
+            pos_++;
             return *this;
         }
         bool operator==(Iterator const& rhs){
-            return rhs.curIterator_ == curIterator_;
+            return rhs.pos_ == pos_;
         }
         bool operator!=(Iterator const& rhs){
             return !(*this==rhs);
         }
         MenuItem const* operator->(){
-            return &(*curIterator_);
+            return &(*menuItems_)[pos_];
+        }
+        Iterator begin(){
+            this->pos_ = 0;
+            return *this;
+        }
+        Iterator end(){
+            this->pos_ = menuItems_->size();
+            return *this;
         }
     private:
-        std::vector<MenuItem>::iterator curIterator_;
+        std::vector<MenuItem>* menuItems_;
+        int pos_;
     };
 
     BreakfastMenu(){
         addItem("egg",2);
         addItem("hashBrown", 1);
-        begin_ = Iterator(menuItems_.begin());
-        end_ = Iterator(menuItems_.end());
     }
     Iterator begin(){
-        return begin_;
+        return Iterator(&menuItems_).begin();
     }
     Iterator end(){
-        return end_;
+        return Iterator(&menuItems_).end();
     }
 private:
     void addItem(std::string const& name, double price) {
         menuItems_.push_back(MenuItem(name, price));
     }
     std::vector<MenuItem> menuItems_;
-    Iterator begin_;
-    Iterator end_;
 };
 
 struct LunchMenu{
@@ -155,7 +160,7 @@ struct Waitress{
     }
     void printMenu(){
         std::cout<<"Print breakfast Menu"<<std::endl;
-        //printMenu(breakfastMenu_);
+        printMenu(breakfastMenu_);
         std::cout<<"Print lunch Menu"<<std::endl;
         printMenu(lunchMenu_);
     }
