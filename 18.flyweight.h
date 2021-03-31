@@ -7,13 +7,18 @@
 #include <vector>
 #include <iostream>
 
-//reduces the number of object instances at runtime, saving memory
+// reduces the number of object instances at runtime, saving memory
 // without this pattern, Tree will multiple instance.
 struct Tree{
+    //Intrinsic State
     void display(int x, int y, int age){
         std::cout<<"x coord: "<< x <<" ,y coord: "<< y << " ,age: "<< age<<std::endl;
     }
-    std::string largeData;
+    std::string getTreeKnowledge(){
+        return largeTreeKnowledge_;
+    }
+private:
+    std::string largeTreeKnowledge_;
 };
 
 struct TreeManager{
@@ -24,7 +29,11 @@ struct TreeManager{
         for(auto t: treeArray_)
             tree_.display(t.XCoord, t.YCoord, t.Age);
     }
+    std::string getTreeKnowledge(){
+        return tree_.getTreeKnowledge();
+    }
     struct State{
+        //extrinsic State
         State(int x, int y, int age): XCoord(x), YCoord(y), Age(age){}
         int XCoord;
         int YCoord;
