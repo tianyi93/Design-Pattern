@@ -25,5 +25,6 @@ add_executable(iterator_pattern 15.iterator_pattern.cpp 15.iterator_pattern.h)
 add_executable(iterator_pattern_2 15.iterator_pattern_2.cpp 15.iterator_pattern_2.h )
 add_executable(composite_pattern 16.composite_pattern.cpp 16.composite_pattern.h)
 add_executable(state_pattern 17.state_pattern.cpp 17.state_pattern.h)
+add_executable(flyweight_pattern 18.flyweight.h 18.flyweight.cpp)
 
 add_executable(try try.cpp)
