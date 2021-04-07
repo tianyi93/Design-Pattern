@@ -22,5 +22,9 @@ int main() {
     std::cout<<isCommitted->interpreter("p4, p3")<<std::endl;
     std::cout<<isCommitted->interpreter("p4")<<std::endl;
 
+    auto integer1 = std::make_shared<Integer>("10");
+    auto integer2 = std::make_shared<Integer>("20");
+    auto sum = std::make_shared<AddExpression>(integer1, integer2);
+    std::cout<<"sum of integer 1 and integer 2 is : "<<sum->eval()<<std::endl;
     return 0;
 }

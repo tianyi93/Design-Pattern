@@ -6,6 +6,7 @@
 #define DESIGN_PATTERN_INTERPRETER_PATTERN_H
 #include <string>
 #include <memory>
+#include <iostream>
 /*
    Interpreter Design Pattern is a Behavioural Design Pattern which is a component
    that processes structured text data by turning it into separate lexical tokens(lexing) and then interpreting sequences of tokens(parsing)
@@ -17,7 +18,12 @@
     Implementing the grammar is easy, too. As each symbol represents a token that essentially a class. To add a new symbol you need to create a new class.
  */
 struct Expression{
-    virtual bool interpreter(std::string const& con) = 0;
+    virtual bool interpreter(std::string const& con){
+        std::cout<<"cannot call interpreter method"<<std::endl;
+    };
+    virtual int eval(){
+        std::cout<<"cannot call eval method"<<std::endl;
+    };
 };
 
 struct TerminalExpression : public Expression{
@@ -31,6 +37,18 @@ struct TerminalExpression : public Expression{
     }
 private:
     std::string data_;
+};
+
+struct Integer : public Expression{
+    Integer(std::string const& s){
+        if(!s.empty())
+            m_value = std::stoi(s);
+    };
+    int eval() override{
+        return m_value;
+    }
+private:
+    int m_value;
 };
 
 struct OrExpression : public Expression{
@@ -52,6 +70,19 @@ struct AndExpression : public Expression{
             std::shared_ptr<Expression> expr2): expr1_(expr1), expr2_(expr2){};
     bool interpreter(std::string const& con) override{
         return expr1_->interpreter(con) && expr2_->interpreter(con);
+    }
+
+private:
+    std::shared_ptr<Expression> expr1_;
+    std::shared_ptr<Expression> expr2_;
+};
+
+struct AddExpression : public Expression{
+    AddExpression(
+            std::shared_ptr<Expression> expr1,
+            std::shared_ptr<Expression> expr2): expr1_(expr1), expr2_(expr2){};
+    int eval() override{
+        return expr1_->eval() + expr2_->eval();
     }
 
 private:
