@@ -27,5 +27,6 @@ add_executable(composite_pattern 16.composite_pattern.cpp 16.composite_pattern.h
 add_executable(state_pattern 17.state_pattern.cpp 17.state_pattern.h)
 add_executable(flyweight_pattern 18.flyweight.h 18.flyweight.cpp)
 add_executable(interpreter_pattern 19.Interpreter_pattern.h 19.Interpreter_pattern.cpp)
+add_executable(interpreter_pattern2 19.Interpreter_pattern_2.h 19.Interpreter_pattern_2.cpp)
 
 add_executable(try try.cpp)
