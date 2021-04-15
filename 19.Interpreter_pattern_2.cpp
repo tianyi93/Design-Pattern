@@ -16,5 +16,7 @@ int main() {
     execute(expression);
 
     execute("3");
+    execute("3*5-(2+6)");
+    execute("5/3");
     return 0;
 }

@@ -13,7 +13,7 @@
 using namespace std;
 
 struct Token {
-    enum Type { integer, plus, minus, lparen, rparen };
+    enum Type { integer, plus, minus, lparen, rparen, multi, divd };
     Type        m_type;
     string      m_text;
     Token() = default;
@@ -24,18 +24,32 @@ struct Token {
 
 vector<Token> lex(string const& input) {
     vector<Token> result;
-
+    bool addParen = false;
     for (auto it = input.begin(); it!=input.end(); it++) {
         switch (*it) {
             case '+': result.push_back(Token(Token::plus, "+")); break;
             case '-': result.emplace_back(Token::minus, "-"); break;
             case '(': result.emplace_back(Token::lparen, "("); break;
             case ')': result.emplace_back(Token::rparen, ")"); break;
+            case '*':
+                result.insert(result.end()-1, Token(Token::lparen, "("));
+                result.emplace_back(Token::multi, "*");
+                addParen = true;
+                break;
+            case '/':
+                result.insert(result.end()-1, Token(Token::lparen, "("));
+                result.emplace_back(Token::divd, "/");
+                addParen = true;
+                break;
             default:
                 auto firstNotInt = find_if(it, input.end(), [](char c){
                     return !isdigit(c);
                 });
                 result.emplace_back(Token::integer, string(it, firstNotInt));
+                if(addParen) {
+                    result.emplace_back(Token::rparen, ")");
+                    addParen = false;
+                }
                 it = --firstNotInt;
                 break;
         }
@@ -54,17 +68,21 @@ struct Integer : Expression {
 };
 
 struct BinaryOperation : Expression {
-    enum Type { addition, subtraction }   m_type;
+    enum Type { addition, subtraction, multipilication, divide }   m_type;
     shared_ptr<Expression> m_lhs, m_rhs;
 
     int eval() const {
-        if (m_type == addition) return valueOr0(m_lhs) + valueOr0(m_rhs);
-        return valueOr0(m_lhs) + valueOr0(m_rhs);
-    }
-
-private:
-    int valueOr0(shared_ptr<Expression> exp) const{
-        return exp!=nullptr? exp->eval() : 0;
+        if(m_lhs == nullptr)
+            //throw exception
+            return 0;
+        if(m_rhs == nullptr)
+            return m_lhs->eval();
+        if (m_type == addition) return m_lhs->eval() + m_rhs->eval();
+        else if(m_type == subtraction) return m_lhs->eval() - m_rhs->eval();
+        else if(m_type == multipilication) return m_lhs->eval() * m_rhs->eval();
+        else if(m_type == divide) return m_lhs->eval() / m_rhs->eval();
+        else
+            return 0;
     }
 };
 
@@ -81,6 +99,8 @@ shared_ptr<Expression> parse(vector<Token> const& tokens) {
 
             case Token::plus: result->m_type = BinaryOperation::addition; break;
             case Token::minus: result->m_type = BinaryOperation::subtraction; break;
+            case Token::multi: result->m_type = BinaryOperation::multipilication; break;
+            case Token::divd: result->m_type = BinaryOperation::divide; break;
 
             //sub expression
             case Token::lparen:
