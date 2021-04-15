@@ -43,27 +43,32 @@ vector<Token> lex(string const& input) {
     return result;
 }
 
-struct Element {
+struct Expression {
     virtual int eval() const = 0;
 };
 
-struct Integer : Element {
+struct Integer : Expression {
     int   m_value;
     Integer(const int v) : m_value(v) {}
     int eval() const { return m_value; }
 };
 
-struct BinaryOperation : Element {
+struct BinaryOperation : Expression {
     enum Type { addition, subtraction }   m_type;
-    shared_ptr<Element> m_lhs, m_rhs;
+    shared_ptr<Expression> m_lhs, m_rhs;
 
     int eval() const {
-        if (m_type == addition) return m_lhs->eval() + m_rhs->eval();
-        return m_lhs->eval() - m_rhs->eval();
+        if (m_type == addition) return valueOr0(m_lhs) + valueOr0(m_rhs);
+        return valueOr0(m_lhs) + valueOr0(m_rhs);
+    }
+
+private:
+    int valueOr0(shared_ptr<Expression> exp) const{
+        return exp!=nullptr? exp->eval() : 0;
     }
 };
 
-shared_ptr<Element> parse(vector<Token> const& tokens) {
+shared_ptr<Expression> parse(vector<Token> const& tokens) {
     auto result = make_unique<BinaryOperation>();
 
     for (auto it = tokens.begin(); it!=tokens.end(); it++) {
